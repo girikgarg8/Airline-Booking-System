@@ -1,0 +1,51 @@
+# Flight Service
+
+<h3>Objective</h3>
+<p>
+    We need to build a backend system that can support different features for an airline company, our end user is going to be someone who wants to book flights and query about flights so we need a robust system to actually help them give the best experience possible. This doc is solely going to focus on the backend part of the system. We want to prepare the whole backend keeping the fact that the code base should be as maintainable as possible.
+</p>
+
+
+<h3>Design</h3>
+<img src="/src/High-Level-Design.png" alt="High Level Design"/>
+
+<h3> Non Functional Requirements </h3>
+
+- We can expect that we are going to have more flight searches than flight bookings.
+
+- The system needs to be accurate in terms of booking. (Means the booking should not be done more than once for the user).
+
+- Expect that we will be having approx. 1,00,000 total signed up users, each user may book for a maximum of 5, so 5,00,000 bookings might come up in one quarter.
+
+- So in one day we can expect 5000 bookings.
+
+- System should be capable of scaling up to 3X of the current estimated traffic.
+
+- System should handle real time updates to flight prices, before the user makes the final booking.
+
+- System should make sure that the prices don’t change while the payment is going on.
+
+- Concurrency should be handled, using RDBMS should be a good solution.
+
+<h3>Schema</h3>
+
+<img src="/src/Schema.png" alt="Schema"/>
+
+
+<h3>Services</h3>
+<ul>
+<li>
+<h4>
+<a href="about:blank" target="_blank">Flights API Gateway</a></h4>
+</li>
+<li>
+<h4>
+<a href="about:blank" target="_blank">Flights Booking Service</a></h4>
+</li>
+<li>
+<h4>
+<a href="about:blank" target="_blank">Flights Notification Service</a></h4>
+</li>
+</ul>
+
+For the complete design doc of this project please <a href="https://docs.google.com/document/d/1FyH16wreiVJ3Vtazm8msDB7-DPQsjRFSYDkLdWSvdJo/edit?usp=sharing" target="_blank"> click here

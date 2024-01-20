@@ -47,4 +47,19 @@ There's also a minor improvement that we can do in the project: Avoid using hard
 
 2. Internationalisation: In highly scalable applications, the responses may have to be sent according to the region where the request is coming from.
 
+**Project Design: What is the Project about?**
 
+We are seeking to build something like Google Flights, which shows the flights from a destination to source. Now based upon the different options, we can see the prices of flights, the number of available seats, Airplane model etc. We will also simulate booking of a ticket, sending confirmation mail to the passenger through email, send reminders etc
+
+We are going to use a microservices architecture, and there's a reason for that. The entire flight search and booking system is something that is read intensive, rather than being write intensive (because more people tend to search for a flight rather than actually booking it). So, if we keep the project as a monolith, we'll have to scale both the Flight Search Service and Booking Service during peak season like New Year. However, if we keep both of them as separate services then we can work on scaling the Search Service only.
+
+In order to use the seeders, we use `npx sequelize seed:generate --name add-airplanes`. This will give us a file in the seeder folder, which we can change to allow bulk insertion and bulk deletion of records.
+
+Once the seeder is defined, we can execute `npx sequelize db:seed:all`
+
+Let's also resolve a confusion: Bulk insert doesn't mean that multiple copies of a single record will be stored in the database, it means that many different records (specified by the developer) will all be inserted into the database at once. (Compared to the traditional way of inserting each record one by one)
+
+
+The benefit of using seeder is that it is easier for a developer to run the seed, and the dummy records will be inserted, compared to inserting each record individually by sending API requests/ using raw SQL queries.
+
+To undo the seed, we can execute `npx sequelize db:seed:undo:all`. In this case, the down() method of the seeder will be executed.
