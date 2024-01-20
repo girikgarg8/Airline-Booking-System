@@ -8,7 +8,7 @@ Real life usecase for migrations:
 
 Let's say there are five developers in the team. Developer A makes some change in the schema, commits those changes and pushes it to the repo. Now the other four developers can do a git pull, run the migration and they too will now have the latest schema.
 
-There can be two levels of constraints: JavaScript level constraints (that we specify in the models), and database level constraints (that we specify in the migrations)
+There can be two levels of constraints: JavaScript level constraints (that we specify in the models), and database level constraints (that we specify in the migrations) -> it might look like models is not being used, but it is being used by the Sequelize for application level constraints
 
 When we execute `npx sequelize db:migrate`, it executes all the pending migrations (more specifically, the up() function of the migrations). Now the question might be, that how does Sequelize know which migrations are pending, and which are not? Sequelize keeps a track of all the migrations run so far, as each migration has a unique ID based on the date and time, it was created.
 
@@ -34,3 +34,17 @@ What is URL encoding? URL encoding is converting the characters into a format th
 `Express` library can't parse the URL encoded strings as such. So we need to specify `express.urlencoded()` in order to parse the URL encoded strings.
 
 There's a minor point about using "extended:true" in url-encoded, it indicates what library we want to use. The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true).
+
+Q. Why are we creating error classes in the project? 
+
+A. We need to have a consistent manner of error handling in the project. If we don't define error classes, then different developers will throw different types of errors, and it will lead to inconsistency.
+
+We are also reducing the duplication of code by making a common Response class, as every time we are sending message, error, status and data in the response. 
+
+There's also a minor improvement that we can do in the project: Avoid using hard strings, for two reasons:
+
+1. Maintainability and preventing code duplication
+
+2. Internationalisation: In highly scalable applications, the responses may have to be sent according to the region where the request is coming from.
+
+
