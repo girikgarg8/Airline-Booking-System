@@ -1,4 +1,4 @@
-# Flight Service
+# Flights Service
 
 <h3>Objective</h3>
 <p>
@@ -36,15 +36,15 @@
 <ul>
 <li>
 <h4>
-<a href="about:blank" target="_blank">Flights API Gateway</a></h4>
+<a href="#" target="_blank">Flights API Gateway</a></h4>
 </li>
 <li>
 <h4>
-<a href="about:blank" target="_blank">Flights Booking Service</a></h4>
+<a href="#" target="_blank">Flights Booking Service</a></h4>
 </li>
 <li>
 <h4>
-<a href="about:blank" target="_blank">Flights Notification Service</a></h4>
+<a href="#" target="_blank">Flights Notification Service</a></h4>
 </li>
 </ul>
 
