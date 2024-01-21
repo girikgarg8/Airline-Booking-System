@@ -63,3 +63,5 @@ Let's also resolve a confusion: Bulk insert doesn't mean that multiple copies of
 The benefit of using seeder is that it is easier for a developer to run the seed, and the dummy records will be inserted, compared to inserting each record individually by sending API requests/ using raw SQL queries.
 
 To undo the seed, we can execute `npx sequelize db:seed:undo:all`. In this case, the down() method of the seeder will be executed.
+
+In order to setup the association between the Cities and Airport Model, we use `npx sequelize migration:generate --name update-city-airport-association`. We add the foreign key constraint, both at the database level (migrations) and JavaScript level (models). 
