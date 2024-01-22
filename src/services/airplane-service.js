@@ -39,9 +39,14 @@ async function getAirplane(id){
         return airplane;
     }
     catch(error){
-        if (error.statusCode == StatusCodes.NOT_FOUND){
-            throw new AppError('The airplane you requested is not present',error.statusCode);
+        if (error.name == 'SequelizeValidationError') {
+            let explanation = [];
+            error.errors.forEach((err) => {
+                explanation.push(err.message);
+            })
+            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
+        throw new AppError('Cannot create a new Airplane object', StatusCodes.INTERNAL_SERVER_ERROR);
         throw new AppError('Cannot fetch data of the airplane',StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
