@@ -10,18 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-       this.hasMany(models.Flight,{
-          foreignKey: 'airplaneId',
-          onDelete: 'CASCADE'
-       });  
+      this.hasMany(models.Flight, {
+        foreignKey: 'airplaneId',
+        onDelete: 'CASCADE'
+      });
 
-       this.belongsTo(models.Airport,{
+      this.belongsTo(models.Airport, {
         foreignKey: 'departureAirportId'
-       })
+      })
 
-       this.belongsTo(models.Airport,{
+      this.belongsTo(models.Airport, {
         foreignKey: 'arrivalAirportId'
-       })
+      })
     }
   }
   Airplane.init({
@@ -36,8 +36,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0,
-      validate:{
-        max:1000
+      validate: {
+        max: 1000
       }
     }
   }, {
