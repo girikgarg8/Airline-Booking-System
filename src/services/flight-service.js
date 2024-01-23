@@ -1,6 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const { FlightRepository } = require('../repositories/index');
 const AppError = require('../utils/errors/app-error');
+const { Op } = require('sequelize');
 
 const flightRepository = new FlightRepository();
 
@@ -21,6 +22,55 @@ async function createFlight(data) {
     }
 }
 
+async function getAllFlights(query) {
+    let customFilter = {};
+    let sortFilter = [];
+    const endingTime = " 23:59:00";
+    //trips=MUM-DEL
+    if (query.trips) {
+        [departureAirportId, arrivalAirportId] = query.trips.split("-");
+        if (departureAirportId == arrivalAirportId) {
+            throw new AppError('Arrival and Departure Airport cannot be the same', StatusCodes.BAD_REQUEST);
+        }
+        customFilter.departureAirportId = departureAirportId;
+        customFilter.arrivalAirportId = arrivalAirportId;
+    }
+    // price=4000-6000
+    if (query.price) {
+        [minPrice, maxPrice] = query.price.split("-");
+        if (maxPrice === undefined) maxPrice = 20000
+        if (minPrice > maxPrice) {
+            throw new AppError('Minimum price cannot be greater than the maximum price', StatusCodes.BAD_REQUEST);
+        }
+        customFilter.price = {
+            [Op.between]: [minPrice, maxPrice]
+        }
+    }
+    if (query.travellers) {
+        customFilter.totalSeats = {
+            [Op.gte]: query.travellers
+        }
+    }
+    if (query.tripDate) {
+        customFilter.departureTime = {
+            [Op.between]: [query.tripDate, query.tripDate + endingTime]
+        }
+    }
+    if (query.sort) {
+        const params = query.sort.split(",");
+        const sortFilters = params.map((param) => param.split("_"))
+        sortFilter = sortFilters
+    }
+    try {
+        const flights = await flightRepository.getAllFlights(customFilter, sortFilter);
+        return flights;
+    }
+    catch (error) {
+        throw new AppError('Cannot fetch data of all the flights', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
-    createFlight
+    createFlight,
+    getAllFlights
 }
