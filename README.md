@@ -9,23 +9,6 @@
 <h3>High Level Design</h3>
 <img src="/src/High-Level-Design.png" alt="High Level Design"/>
 
-<h3> Non Functional Requirements </h3>
-
-- We can expect that we are going to have more flight searches than flight bookings.
-
-- The system needs to be accurate in terms of booking. (Means the booking should not be done more than once for the user).
-
-- Expect that we will be having approx. 1,00,000 total signed up users, each user may book for a maximum of 5, so 5,00,000 bookings might come up in one quarter.
-
-- So in one day we can expect 5000 bookings.
-
-- System should be capable of scaling up to 3X of the current estimated traffic.
-
-- System should handle real time updates to flight prices, before the user makes the final booking.
-
-- System should make sure that the prices don’t change while the payment is going on.
-
-- Concurrency should be handled, using RDBMS should be a good solution.
 
 <h3>Schema</h3>
 
@@ -56,8 +39,8 @@ The attribute city_id in Airport is the foreign key which references the primary
 
  Similarly, we identified a one to many relationship between Airport and Flight (one airport can have many flights departing/arriving), and a similar one to many relationship between Airplane and Flight (one airplane can be used for many flights). Hence we setup the foreign key constraints at both the JavaScript and database levels.
 
-The GET API for Flights was setup in a manner to search flights based upon different filters like departure airport, arrival airport, minimum and maximum price, trip date, number of seats required etc. We are also extending the functionality to sort the results based upon different parameters like arrival time, departure time, price etc.
+The GET API for Flights was setup in a manner to search flights based upon different filters like departure airport, arrival airport, minimum and maximum price, trip date, number of seats required etc. We also extended the functionality to sort the results based upon different parameters like arrival time, departure time, price etc. We took motivation from Flipkart Flights for the design of the Flights API.
 
-We took motivation from Flipkart Flights for the design of the Flights API.
+We used inner joins (through a functionality called eager loading in Sequelize ORM) to find out the airport name corresponding to an airport ID and return it in the response of GET '/flights' API. 
 
 For the complete design doc of this project please <a href="https://docs.google.com/document/d/1FyH16wreiVJ3Vtazm8msDB7-DPQsjRFSYDkLdWSvdJo/edit?usp=sharing" target="_blank"> click here
