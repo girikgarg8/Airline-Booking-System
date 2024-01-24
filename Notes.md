@@ -67,3 +67,6 @@ To undo the seed, we can execute `npx sequelize db:seed:undo:all`. In this case,
 In order to setup the association between the Cities and Airport Model, we use `npx sequelize migration:generate --name update-city-airport-association`. We add the foreign key constraint, both at the database level (migrations) and JavaScript level (models). 
 
 While implementing the CRUD APIs for Flight, we need to be little careful: because the API to create or delete a flight shouldn't be exposed to the end user, they should only be exposed to the admin. We'll be taking care of this later in the authentication and authorization part. Also, the read APIs would be based upon some filter conditions like destination Airport, source Airport etc.
+
+Using an ORM can help us write complex SQL queries in an object oriented fashion which is quite readable, but ORM comes with its own disadvantage which is that it might prepare slow queries for operations which can be done simply.
+
