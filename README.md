@@ -41,6 +41,6 @@ The attribute city_id in Airport is the foreign key which references the primary
 
 The GET API for Flights was setup in a manner to search flights based upon different filters like departure airport, arrival airport, minimum and maximum price, trip date, number of seats required etc. We also extended the functionality to sort the results based upon different parameters like arrival time, departure time, price etc. We took motivation from Flipkart Flights for the design of the Flights API.
 
-We used inner joins (through a functionality called eager loading in Sequelize ORM) to find out the airport name corresponding to an airport ID and return it in the response of GET '/flights' API. 
+We used inner joins (through a functionality called eager loading in Sequelize ORM) to find out the airport name corresponding to an airport ID and return it in the response of GET '/flights' API. There was a challenge while using joins between the `Flights` and `Airports` models, as we need to have custom joins (because these entities are related to each other with the help of `departureAirportId` and `arrivalAirportId`)
 
 For the complete design doc of this project please <a href="https://docs.google.com/document/d/1FyH16wreiVJ3Vtazm8msDB7-DPQsjRFSYDkLdWSvdJo/edit?usp=sharing" target="_blank"> click here
