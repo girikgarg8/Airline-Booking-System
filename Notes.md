@@ -70,3 +70,4 @@ While implementing the CRUD APIs for Flight, we need to be little careful: becau
 
 Using an ORM can help us write complex SQL queries in an object oriented fashion which is quite readable, but ORM comes with its own disadvantage which is that it might prepare slow queries for operations which can be done simply.
 
+The flow in which the seats would be booked is given as: ![Flow of seat booking](src/Seat_Booking_Flow.PNG)
