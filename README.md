@@ -33,7 +33,7 @@
 
 **High level flow of the project** 
 
-We started by identifying the functional and non-functional requirements of the project. We then designed the schema and identified four models: Airplane, City, Airport and Flight. We then setup these models and created CRUD APIs for each of these models.
+We started by identifying the functional and non-functional requirements of the project. We then designed the schema and identified five models: Airplane, City, Airport and Flight, Seats. We then setup these models and created CRUD APIs for each of these models.
 
 The attribute city_id in Airport is the foreign key which references the primary key id of City. There is a one to many relationship between these models (one city can have multiple airports) . So, we set up an association between these models by establishing the foreign key relationship using Sequelize ORM.
 
