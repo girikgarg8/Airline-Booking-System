@@ -1,4 +1,4 @@
-# Flights Service
+# Flights Search Service
 
 <h3>Objective</h3>
 <p>
