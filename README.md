@@ -33,14 +33,16 @@
 
 **High level flow of the project** 
 
-We started by identifying the functional and non-functional requirements of the project. We then designed the schema and identified five models: Airplane, City, Airport, Flight and Seats. We then setup these models and created CRUD APIs for each of these models.
+We started by identifying the functional and non-functional requirements of the project. We then designed the schema and identified the models: Airplane, City, Airport, Flight and Seats. We then setup these models and created CRUD APIs for each of these models.
 
 The attribute city_id in Airport is the foreign key which references the primary key id of City. There is a one to many relationship between these models (one city can have multiple airports) . So, we set up an association between these models by establishing the foreign key relationship using Sequelize ORM.
 
- Similarly, we identified a one to many relationship between Airport and Flight (one airport can have many flights departing/arriving), and a similar one to many relationship between Airplane and Flight (one airplane can be used for many flights). Hence we setup the foreign key constraints at both the JavaScript and database levels.
+Similarly, we identified a one to many relationship between Airport and Flight (one airport can have many flights departing/arriving), and a similar one to many relationship between Airplane and Flight (one airplane can be used for many flights). Hence we setup the foreign key constraints at both the JavaScript and database levels.
 
 The GET API for Flights was setup in a manner to search flights based upon different filters like departure airport, arrival airport, minimum and maximum price, trip date, number of seats required etc. We also extended the functionality to sort the results based upon different parameters like arrival time, departure time, price etc. We took motivation from Flipkart Flights for the design of the Flights API.
 
 We used inner joins (through a functionality called eager loading in Sequelize ORM) to find out the airport name corresponding to an airport ID and return it in the response of GET '/flights' API. There was a challenge while using joins between the `Flights` and `Airports` models, as we need to have custom joins (because these entities are related to each other with the help of `departureAirportId` and `arrivalAirportId`)
+
+The logic to update the flights is atomic in nature, as we are leveraging the transactional capabilities provided by Sequelize. This logic is being used by the Booking Service.
 
 For the complete design doc of this project please <a href="https://docs.google.com/document/d/1FyH16wreiVJ3Vtazm8msDB7-DPQsjRFSYDkLdWSvdJo/edit?usp=sharing" target="_blank"> click here
