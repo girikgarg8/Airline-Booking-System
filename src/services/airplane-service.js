@@ -46,7 +46,6 @@ async function getAirplane(id){
             })
             throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
-        throw new AppError('Cannot create a new Airplane object', StatusCodes.INTERNAL_SERVER_ERROR);
         throw new AppError('Cannot fetch data of the airplane',StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }

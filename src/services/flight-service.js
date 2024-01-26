@@ -70,7 +70,25 @@ async function getAllFlights(query) {
     }
 }
 
+async function getFlight(id) {
+    try {
+        const flight = await flightRepository.get(id);
+        return flight;
+    }
+    catch (error) {
+        if (error.name == 'SequelizeValidationError') {
+            let explanation = [];
+            error.errors.forEach((err) => {
+                explanation.push(err.message);
+            })
+            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
+        }
+        throw new AppError('Cannot fetch data of the flight', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlight
 }
