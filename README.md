@@ -19,7 +19,7 @@
 <ul>
 <li>
 <h4>
-<a href="#" target="_blank">Flights API Gateway</a></h4>
+<a href="https://github.com/girikgarg8/Flights-API-Gateway" target="_blank">Flights API Gateway</a></h4>
 </li>
 <li>
 <h4>
@@ -43,6 +43,10 @@ The GET API for Flights was setup in a manner to search flights based upon diffe
 
 We used inner joins (through a functionality called eager loading in Sequelize ORM) to find out the airport name corresponding to an airport ID and return it in the response of GET '/flights' API. There was a challenge while using joins between the `Flights` and `Airports` models, as we need to have custom joins (because these entities are related to each other with the help of `departureAirportId` and `arrivalAirportId`)
 
-The logic to update the flights is atomic in nature, as we are leveraging the transactional capabilities provided by Sequelize. This logic is being used by the Booking Service.
+We have impelemented a row level lock on the flights table, to prevent two concurrent requests from writing into the same set of rows. We also implemented transactional capabilities in some of the functions where concurrent requests are possible, this ensures the atomicity of the transaction.
+
+Below is a snapshot depicting the transactional capabilities of the Search Service:
+
+[Concurrency on Transaction in the flight table](src/Concurrency_on_flights_table_while_making_a_booking_from_booking_service.PNG)
 
 For the complete design doc of this project please <a href="https://docs.google.com/document/d/1FyH16wreiVJ3Vtazm8msDB7-DPQsjRFSYDkLdWSvdJo/edit?usp=sharing" target="_blank"> click here
