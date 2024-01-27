@@ -47,6 +47,6 @@ We have impelemented a row level lock on the flights table, to prevent two concu
 
 Below is a snapshot depicting the transactional capabilities of the Search Service:
 
-[Concurrency on Transaction in the flight table](src/Concurrency_on_flights_table_while_making_a_booking_from_booking_service.PNG)
+![Concurrency on Transaction in the flight table](src/Concurrency_on_flights_table_while_making_a_booking_from_booking_service.PNG)
 
 For the complete design doc of this project please <a href="https://docs.google.com/document/d/1FyH16wreiVJ3Vtazm8msDB7-DPQsjRFSYDkLdWSvdJo/edit?usp=sharing" target="_blank"> click here
