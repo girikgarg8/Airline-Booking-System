@@ -27,7 +27,7 @@
 </li>
 <li>
 <h4>
-<a href="#" target="_blank">Flights Notification Service</a></h4>
+<a href="https://github.com/girikgarg8/Flights-Notification-Service" target="_blank">Flights Notification Service</a></h4>
 </li>
 </ul>
 
