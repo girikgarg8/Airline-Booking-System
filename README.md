@@ -6,16 +6,16 @@
 </p>
 
 
-<h3>High Level Design</h3>
+<h3>High Level Design of the Project</h3>
 <img src="/src/High-Level-Design.png" alt="High Level Design"/>
 
 
-<h3>Schema</h3>
+<h3>Schema of the Flights Search Service</h3>
 
 <img src="/src/Schema.png" alt="Schema"/>
 
 
-<h3>Services</h3>
+<h3>Services in the Project</h3>
 <ul>
 <li>
 <h4>
