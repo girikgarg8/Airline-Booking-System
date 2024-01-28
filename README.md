@@ -31,7 +31,7 @@
 </li>
 </ul>
 
-**High level flow of the project** 
+**High level flow of the service** 
 
 We started by identifying the functional and non-functional requirements of the project. We then designed the schema and identified the models: Airplane, City, Airport, Flight and Seats. We then setup these models and created CRUD APIs for each of these models.
 
